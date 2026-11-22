@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@3d3c42e0a3f13a1f1a9c7e4bfad9e32e0ddf6ea4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           ref: b86d3c79c2fa6605ef2f44ec843cc27453adccc2
           persist-credentials: false
