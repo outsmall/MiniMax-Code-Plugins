@@ -1,0 +1,32 @@
+name: XC PR81 current-head Linux check
+
+on:
+  push:
+    branches: [verify-xc-pr81-linux-20261122]
+    paths: [.github/workflows/xc-pr81-linux-check-20261122.yml]
+
+permissions:
+  contents: read
+
+jobs:
+  check-submitted-revision:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e0a3f13a1f1a9c7e4bfad9e32e0ddf6ea4
+        with:
+          ref: b86d3c79c2fa6605ef2f44ec843cc27453adccc2
+          persist-credentials: false
+      - name: Verify exact submitted source revision
+        run: test "$(git rev-parse HEAD)" = "b86d3c79c2fa6605ef2f44ec843cc27453adccc2"
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 22
+          package-manager-cache: false
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: "3.13"
+      - run: python -m pip install Pillow==12.3.0
+      - run: sudo apt-get update && sudo apt-get install -y --no-install-recommends fonts-noto-cjk
+      - run: npm ci
+      - run: npm run check
