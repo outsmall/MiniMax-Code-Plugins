@@ -15,10 +15,10 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b18
         with:
-          ref: 064c3373c034b92533cf903874d8c47bfa462ff5
+          ref: b86d3c79c2fa6605ef2f44ec843cc27453adccc2
           persist-credentials: false
       - name: Verify submitted source revision
-        run: test "$(git rev-parse HEAD)" = "064c3373c034b92533cf903874d8c47bfa462ff5"
+        run: test "$(git rev-parse HEAD)" = "b86d3c79c2fa6605ef2f44ec843cc27453adccc2"
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
         with:
           node-version: 22
